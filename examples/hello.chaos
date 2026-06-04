@@ -1,0 +1,45 @@
+;; CHAOS.ch v0.1 Demo Program
+;; Запуск: zig build run -- examples/hello.chaos
+
+[let $x = 5]
+[let $y = "3"]
+
+;; Определение функции с хаотичным поведением
+[defun add_web (a b) {
+    $result = (a + b)
+    return $result
+}]
+
+;; Вызов функции — результат непредсказуем
+[let $z = [add_web $x $y]]
+[print $z]
+
+;; Случайное число 1..100
+[let $r = [$?]]
+[print $r]
+
+;; Случайный выбор
+[let $m = [maybe "hello" "world"]]
+[print $m]
+
+;; Работа с памятью
+[let $buf = [alloc 100]]
+[write $buf 0 "hello"]
+[let $data = [read $buf 0]]
+[print $data]
+[free $buf]
+
+;; Чтение после free — не ошибка, а хаос
+[let $after = [read $buf 0]]
+[print $after]
+
+;; Условие с хаотичным поведением
+[if ($r > 50) { [print "больше 50"] } { [print "меньше или равно 50"] }]
+
+;; Fuzzy match — даже одинаковые строки совпадают с вероятностью 50%
+[let $same = [fuzzy-match "abc" "abc"]]
+[print $same]
+
+;; Unstable equal — сравнение может врать
+[let $eq = [unstable-equal $x $x]]
+[print $eq]
