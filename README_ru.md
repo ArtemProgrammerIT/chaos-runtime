@@ -347,7 +347,3 @@ chaos --jit-seed=random script.chaos   ;; для воспроизводимос�
 ```
 
 ---
-
-## Лицензия
-
-WTFPL — Do What The F*ck You Want To Public License.
